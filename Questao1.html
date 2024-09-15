@@ -1,0 +1,30 @@
+<script>
+    let jogarNovamente = true
+    while (jogarNovamente) {
+        window.alert("Vamos jogar pedra, papel e tesoura!!")
+        const escolha1 = prompt("Jogador 1, digite pedra, papel, ou tesoura").toLowerCase()
+        const escolha2 = prompt("Jogador 2, digite pedra, papel, ou tesoura").toLowerCase()
+
+        jogar(escolha1, escolha2)
+        jogarNovamente = confirm("Jogar novamente?")
+
+    }
+
+    function jogar(jogador1, jogador2) {
+        const opcoes = ["pedra", "papel", "tesoura"]
+
+        if (!opcoes.includes(jogador1) || !opcoes.includes(jogador2)) {
+            alert("Por favor, escolha entre pedra, papel e tesoura!")
+        } else if (jogador1 === jogador2) {
+            alert("Empate!!")
+        } else if (
+            jogador1 === "pedra" && jogador2 === "tesoura" ||
+            jogador1 === "papel" && jogador2 === "pedra" ||
+            jogador1 === "tesoura" && jogador2 === "papel"
+        ) {
+            alert("Jogador 1 venceu!!")
+        } else {
+            alert("Jogador 2 venceu!!")
+        }
+    }
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem de Vogais</title>
+</head>
+
+<body>
+    <h1>Contagem de Vogais</h1>
+
+    <input type="text" id="inputPalavra" placeholder="Digite uma palavra">
+    <button onclick="addPalavra()">Adicionar Palavra</button>
+    <button onclick="contagem()">Mostrar Contagem</button>
+
+    <p id="palavrasAdicionadas"></p>
+    <p id="resultado"></p>
+
+    <script>
+        const palavras = ["abacaxi", "alegria", "bicicleta", "ouro", "elefante"];
+        document.getElementById('palavrasAdicionadas').innerText = `Palavras adicionadas: ${palavras.join(', ')}`;
+
+        function addPalavra() {
+            const inputPalavra = document.getElementById('inputPalavra').value.trim();
+            if (inputPalavra) {
+                palavras.push(inputPalavra);
+                document.getElementById('palavrasAdicionadas').innerText = `Palavras adicionadas: ${palavras.join(', ')}`;
+                document.getElementById('inputPalavra').value = '';
+            } else {
+                alert('Por favor, insira uma palavra.');
+            }
+        }
+
+        function contagem() {
+            const vogais = ['a', 'e', 'i', 'o', 'u'];
+            let totalVogais = 0;
+            const contagemVogais = { a: 0, e: 0, i: 0, o: 0, u: 0 };
+
+            for (let palavra of palavras) {
+                const palavraMinuscula = palavra.toLowerCase();
+
+                for (let letra of palavraMinuscula) {
+                    if (vogais.includes(letra)) {
+                        contagemVogais[letra]++;
+                        totalVogais++;
+                    }
+                }
+            }
+
+            let resultadoTexto = `Total de vogais: ${totalVogais}<br>`;
+            for (let vogal of vogais) {
+                resultadoTexto += `${vogal.toUpperCase()}: ${contagemVogais[vogal]}<br>`;
+            }
+
+            document.getElementById('resultado').innerHTML = resultadoTexto;
+        }
+    </script>
+</body>
+
+</html>
